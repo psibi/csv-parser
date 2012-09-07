@@ -1,10 +1,13 @@
 #include "csv_parser.hpp"
 
-csv_parser::csv_parser(string filename)
+csv_parser::csv_parser(std::string filename)
   {
     csv_file.open(filename.c_str());
     if (!csv_file.is_open())
-        perror(("Error while opening file " + filename).c_str());
+      {
+	perror(("Error while opening file " + filename).c_str());
+	exit(1);
+      }
   }
 
 csv_parser::~csv_parser()
@@ -12,11 +15,11 @@ csv_parser::~csv_parser()
   csv_file.close();
 }
 
-string csv_parser::get_line(int line_number)
+std::string csv_parser::get_line(int line_number)
   {
     csv_file.clear(); //Clear State
-    csv_file.seekg(0,ios::beg);
-    string line;
+    csv_file.seekg(0,std::ios::beg);
+    std::string line;
     for (int i=0;i<line_number;i++)
       {
 	getline(csv_file,line);
@@ -29,9 +32,9 @@ string csv_parser::get_line(int line_number)
 int csv_parser::total_lines()
 {
   csv_file.clear(); //Clear State
-  csv_file.seekg(0,ios::beg);
+  csv_file.seekg(0,std::ios::beg);
   int no_lines = 0;
-  string line;
+  std::string line;
   while (!csv_file.eof())
     {
       getline(csv_file,line);
@@ -40,9 +43,9 @@ int csv_parser::total_lines()
   return no_lines;
 }
 
-int csv_parser::fields(string line)
+int csv_parser::fields(std::string line)
 {
-  string::iterator it;
+  std::string::iterator it;
   int num_of_comma = 0;
   for (it=line.begin();it<line.end();it++)
     {
@@ -52,17 +55,17 @@ int csv_parser::fields(string line)
   return num_of_comma+1;
 }
 
-string csv_parser::get_value(int row,int column)
+std::string csv_parser::get_value(int row,int column)
 {
-  string line = get_line(row);
+  std::string line = get_line(row);
   int total_columns = fields(line);
   int total_fields = 0;
-  string::iterator it;
-  string::reverse_iterator rit;
-  string value;
+  std::string::iterator it;
+  std::string::reverse_iterator rit;
+  std::string value;
   if (column>total_columns || row>total_lines())
     {
-      cout<<"Error: Specified column or row is greater than total number of columns or row present in the file.\n";
+      std::cout<<"Error: Specified column or row is greater than total number of columns or row present in the file.\n";
       exit(1);
     }
 
@@ -116,8 +119,8 @@ int main()
   /*string a = demo.get_line(3);
   int b=demo.fields(a);
   string ra = demo.get_value(2,2);*/
-  string fa = demo.get_value(2,4);
+  std::string fa = demo.get_value(2,4);
   //int no=demo.total_lines();
-  cout<<"val"<<fa<<endl;
+  std::cout<<"val"<<fa<<std::endl;
 }
 
