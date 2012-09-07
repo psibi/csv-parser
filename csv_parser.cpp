@@ -1,5 +1,4 @@
 #include "csv_parser.hpp"
-using namespace std;
 
 csv_parser::csv_parser(string filename)
   {
@@ -23,7 +22,7 @@ string csv_parser::get_line(int line_number)
 int main()
 {
   csv_parser demo("freak");
-  string a = demo.get_line();
+  string a = demo.get_line(3);
   cout<<a<<"\n";
 }
 
