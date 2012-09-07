@@ -113,14 +113,3 @@ std::string csv_parser::get_value(int row,int column)
     }
 }
 
-int main()
-{
-  csv_parser demo("freak");
-  /*string a = demo.get_line(3);
-  int b=demo.fields(a);
-  string ra = demo.get_value(2,2);*/
-  std::string fa = demo.get_value(2,4);
-  //int no=demo.total_lines();
-  std::cout<<"val"<<fa<<std::endl;
-}
-
