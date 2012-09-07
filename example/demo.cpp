@@ -1,5 +1,7 @@
-/*------ Example Demo----------
-Compilation Command: g++ -o demo demo.cpp csv_parser.cpp
+/*------ ----------Example Demo------------------------
+Compilation Command: 
+
+1) g++ -o demo demo.cpp csv_parser.cpp
 
                      (OR)
 
