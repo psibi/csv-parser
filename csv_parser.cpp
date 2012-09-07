@@ -53,6 +53,7 @@ string csv_parser::get_value(int row,int column)
   int total_columns = fields(line);
   int total_fields = 0;
   string::iterator it;
+  string::reverse_iterator rit;
   string value;
   if (column>total_columns || row>total_lines())
     {
@@ -60,8 +61,29 @@ string csv_parser::get_value(int row,int column)
       exit(1);
     }
 
-  //Todo: Add special case for first column and last column.
-  
+  //Case: For first column in CSV file.
+  if (column == 1)
+    {
+      it=line.begin();
+      while (*it!=',')
+	{
+	  value += *it;
+	  it++;
+	}
+      return value;
+    }
+  //Case: For last column in CSV file.
+  if (column==total_columns)
+    {
+      rit=line.rbegin();
+      while (*rit!=',')
+	{
+	  value += *rit;
+	  rit++;
+	}
+      return value;
+    }
+  //For all other cases
   for (it=line.begin();it<line.end();it++)
     {
       if (*it==',')
@@ -90,7 +112,7 @@ int main()
   /*string a = demo.get_line(3);
   int b=demo.fields(a);
   string ra = demo.get_value(2,2);*/
-  string fa = demo.get_value(5,4);
+  string fa = demo.get_value(2,4);
   //int no=demo.total_lines();
   cout<<"val"<<fa<<endl;
 }
