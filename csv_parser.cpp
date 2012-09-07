@@ -6,7 +6,12 @@ csv_parser::csv_parser(string filename)
     if (!csv_file.is_open())
         perror(("Error while opening file " + filename).c_str());
   }
-  
+
+csv_parser::~csv_parser()
+{
+  csv_file.close();
+}
+
 string csv_parser::get_line(int line_number)
   {
     csv_file.clear(); //Clear State
@@ -100,7 +105,6 @@ string csv_parser::get_value(int row,int column)
 		    it++;
 		}
 	      return value;
-	      
 	    }
 	}
     }
