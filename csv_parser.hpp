@@ -1,5 +1,10 @@
+#ifndef __CSV_PARSER_H__
+#define __CSV_PARSER_H__
+
 #include <iostream>
 #include <fstream>
+
+using namespace std;
 
 class csv_parser
 {
@@ -11,4 +16,4 @@ public:
   string get_line(int line_number);
 };
 
-  
+#endif
