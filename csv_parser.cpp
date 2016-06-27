@@ -106,7 +106,7 @@ std::string csv_parser::get_value(int row,int column)
       rit=line.rbegin();
       while (*rit!=',')
 	{
-	  value += *rit;
+	  value = *rit + value;
 	  rit++;
 	}
       return value;
